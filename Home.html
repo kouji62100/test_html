@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="css/Main.css">
+
+    <style>
+        @font-face {
+            font-family: 'MyFont';
+            src: url(font/Vogue.ttf);
+        }
+
+        .contents{
+            box-sizing: border-box;
+            background: white;
+        }
+        
+        .top_title{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            -webkit-transform : translate(-50%,-50%);
+            transform : translate(-50%,-50%);
+            width: 100%;
+            text-align: center;
+            font-size: 80px;
+            color: white;
+            font-family: 'MyFont';
+        }
+
+        .sub_title{
+            margin-top: 100px;
+            font-family: 'MyFont';
+            font-size: 50px;
+            text-align: center;
+        }        
+        
+        /*********************VIDEO*********************/
+        video{
+            position: fixed;
+            height: auto;
+            width: 100vw;
+            z-index:-1
+        }
+
+        #video{
+            width:100vw;
+            height:100vh;
+            /* background-color: aqua; */
+            position:relative;
+        }
+        /*************************************************/
+
+        /*********************ABOUT*********************/
+        .about_1{
+            text-align: center;
+            width:100%;
+            height:450px;
+        }        
+        .about_title {
+            text-align: left;
+            margin: 0px;
+            padding: 170px 0px 0px 60px;
+            font-size: 30px;
+            width: 40%;
+            height: 450px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .about_title hr{width: 200px;}
+        .about_title span{color: rgb(38, 135, 133);}
+        .about_detail {
+            text-align: left;
+            margin: 0;
+            padding: 150px 0px 0px 0px;
+            width: 59%;
+            height: 450px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .about_2{
+            box-sizing: border-box;
+            text-align: center;
+            width:100%;
+            height:450px;
+            background: rgb(135, 152, 151);
+        }  
+        .about_subtitle {
+            color: #fff;
+            text-align: left;
+            margin: 0px;
+            padding: 150px 0px 0px 50px;
+            font-size: 30px;
+            width: 50%;
+            height: 450px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .about_subtitle p{
+            font-size: 15px;
+            margin-top: 10px;
+        }
+        .about_image {
+            margin: 0;
+            width: 49%;
+            height: 450px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }   
+        .about_image #image{
+            margin: -70px 0px 0px 0px;
+        }
+        /**************************************************/
+
+        /*****************文字のフェードイン*****************/
+        /* 画面外にいる状態 */
+        .fadein {
+            opacity : 0.0;
+            transform : translate(0, 80px);
+            transition : all 1500ms;
+        }
+        /* 画面内に入った状態 */
+        .fadein.scrollin {
+            opacity : 1;
+            transform : translate(0, 0);
+        }
+        /***************************************************/
+
+        /***********************ローディング********************/
+        #loader-bg {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            background: #fff;
+            z-index: 1;
+        }
+        #loader {
+            display: none;
+            position: center;
+            width: 200px;
+            height: 320px;
+            margin: 150px auto auto auto;
+            text-align: center;
+            z-index: 2;
+        }
+        /***************************************************/
+
+        /************************** Work *********************/
+        .works{
+            box-sizing: border-box;
+            width:100%;
+            height:1200px;
+        }
+        .works_title{
+            text-align: center;
+            font-size: 30px;
+            width: 100%;
+            height: 300px;
+        }      
+        .works_title p{padding-top:120px;}  
+        .works_title hr{margin:0px auto; width: 200px;}
+        .works_title span{color: rgb(38, 135, 133);}
+
+        .works_list{
+            box-sizing: border-box;
+            text-align: center;
+            width: 100%;
+            height: 900px;
+        }
+
+        .works_list p{
+            color: gray;
+        }
+
+        .works_1, .works_2{
+            box-sizing: border-box;
+            margin: 0px auto 0px auto;
+            text-align: center;
+        }
+
+        .item{
+            box-sizing: border-box;
+            margin: 0% 20px;
+            width: 300px;
+            height: 450px;
+            display: inline-block; 
+        }
+
+        .item p,h3 {
+            text-align: left;
+        }
+        /***************************************************/
+
+        /*****************コンタクトフォーム*****************/
+        .contact{
+            box-sizing: border-box;
+            width:100%;
+            height:1500px;
+        }
+        .contact_title{
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 30px;
+            width: 100%;
+            height: 300px;
+        }
+        .contact_title p{padding-top:120px;}  
+        .contact_title hr{margin:0px auto; width: 200px;}
+        .contact_title span{color: rgb(38, 135, 133);}
+
+        .contact_form{
+            box-sizing: border-box;
+            margin: 0px auto;
+            background: #fff;
+            height: 1200px;
+            width: 70%;
+        }
+        .contact_form p{
+            padding: 20px 0px;
+        }
+        .mfgg{
+            height: 50px;
+            width: 100%;
+            border: solid 1px rgb(151, 151, 151);
+        }
+        .mfgg_textarea{
+            border: solid 1px rgb(151, 151, 151);
+            height: 120px;
+            width: 100%;
+        }
+        .mfgg::placeholder{
+            color:rgb(201, 201, 201);
+        }
+        input.mfgg {
+            width: 98%;
+            padding-left: 20px;
+        }
+
+        select{
+            height: 50px;
+            width: 100%;
+            background: white;
+            border: solid 1px rgb(151, 151, 151);
+        }
+        select option{
+            background-color: #fff;
+        }
+
+        .sub_bt{
+            height: 50px;
+            width: 200px;
+            margin: 10px auto;
+            font-size: 15px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            background-color: rgb(38, 135, 133);
+        }
+        /***************************************************/
+
+        /************************フッター*********************/
+        .footer{
+            width: 100%;
+            background: rgb(135, 152, 151);
+            color: white;
+            text-align: center;
+            height: 200px;
+        }
+
+        .f_content{
+            width: 33%;
+            height: 200px;
+            display: inline-block; 
+            box-sizing: border-box;
+            vertical-align: top;
+        }
+
+        .f_content #title{
+            margin-top: 30px;
+            font-family: 'MyFont';
+            font-size: 30px;
+        }
+
+        .f_content #adress{
+            font-size: 12px;
+            margin-top: 30px;
+            margin-left: 95px;
+            text-align: left ;
+        }
+
+        .f_content #menu{
+            margin: auto;
+            list-style: none;
+        }
+        .f_content #menu li{
+            margin-top: 20px;
+        }
+
+        .f_content #sns li{
+            display: inline;
+            margin: 10px;
+        }
+        /***************************************************/
+
+        #nav-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            height: 32px;
+            cursor: pointer;
+        }
+        #nav-toggle > div {
+            position: relative;
+            width: 36px;
+        }
+        #nav-toggle span {
+            width: 100%;
+            height: 1px;
+            left: 0;
+            display: block;
+            background: #fff;
+            position: absolute;
+            transition: top .5s ease, -webkit-transform .6s ease-in-out;
+            transition: transform .6s ease-in-out, top .5s ease;
+            transition: transform .6s ease-in-out, top .5s ease, -webkit-transform .6s ease-in-out;
+        }
+        #nav-toggle span:nth-child(1) {
+            top: 0;
+        }
+        #nav-toggle span:nth-child(2) {
+            top: 14px;
+        }
+        #nav-toggle span:nth-child(3) {
+            top: 28px;
+        }
+        #nav-toggle:hover span:nth-child(1) {
+            top: 4px;
+        }
+        #nav-toggle:hover span:nth-child(3) {
+            top: 23px;
+        }
+        .open #nav-toggle span {
+            background: #fff;
+        }
+        .open #nav-toggle span:nth-child(1) {
+            top: 15px;
+            -webkit-transform: rotate(45deg);
+                    transform: rotate(45deg);
+        }
+        .open #nav-toggle span:nth-child(2) {
+            top: 15px;
+            width: 0;
+            left: 50%;
+        }
+        .open #nav-toggle span:nth-child(3) {
+            top: 15px;
+            -webkit-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+        }
+
+        /* z-index */
+        #nav-toggle {
+            z-index: 1000;
+        }
+
+        #container {
+            z-index: 900;
+        }
+
+        #gloval-nav {
+            background: #000;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 990;
+            text-align: center;
+            display: flex;
+            visibility: hidden;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 29px;
+            opacity: 0;
+            transition: opacity .6s ease, visibility .6s ease;
+        }
+
+        #gloval-nav a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 0;
+            transition: color .6s ease;
+        }
+        #gloval-nav a:hover {
+            color: #666;
+        }
+        #gloval-nav ul {
+            list-style: none;
+        }
+        #gloval-nav ul li {
+            opacity: 0;
+            -webkit-transform: translateX(200px);
+                    transform: translateX(200px);
+            transition: opacity .2s ease, -webkit-transform .6s ease;
+            transition: transform .6s ease, opacity .2s ease;
+            transition: transform .6s ease, opacity .2s ease, -webkit-transform .6s ease;
+        }
+        #gloval-nav ul li:nth-child(2) {
+            transition-delay: .15s;
+        }
+        #gloval-nav ul li:nth-child(3) {
+            transition-delay: .3s;
+        }
+        #gloval-nav ul li:nth-child(4) {
+            transition-delay: .45s;
+        }
+        #gloval-nav ul li:nth-child(5) {
+            transition-delay: .6s;
+        }
+        #gloval-nav ul li:nth-child(6) {
+            transition-delay: .75s;
+        }
+        #gloval-nav ul li:nth-child(7) {
+            transition-delay: .9s;
+        }
+
+        /* open */
+        .open {
+            overflow: hidden;
+        }
+        .open #gloval-nav {
+            visibility: visible;
+            opacity: 1;
+        }
+        .open #gloval-nav li {
+            opacity: 1;
+            -webkit-transform: translateX(0);
+                    transform: translateX(0);
+            transition: opacity .9s ease, -webkit-transform 1s ease;
+            transition: transform 1s ease, opacity .9s ease;
+            transition: transform 1s ease, opacity .9s ease, -webkit-transform 1s ease;
+        }
+
+
+    </style>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+        (function($) {
+            $(function () {
+                $('#nav-toggle').on('click', function() {
+                    $('body').toggleClass('open');
+                });
+            });
+        })(jQuery);
+
+        //初回のローディング
+        $(function() {
+            var h = $(window).height(); // ブラウザウィンドウの高さを取得する
+            $('#wrap').css('display','none'); // コンテンツを非表示にする
+            $('#loader-bg ,#loader').height(h).css('display','block');//ローディング画像を表示
+        });
+        $(window).on('load', function () { // 読み込み完了したら実行する
+            $('#loader-bg').delay(3000).fadeOut(3000);// ローディングを隠す
+            $('#loader').delay(2000).fadeOut(2000);
+            $('#wrap').css('display', 'block');// コンテンツを表示する
+        });
+
+        //ナビゲーション固定
+        $(function(){
+            $('.nav').each(function () {
+                var $window = $(window),
+                    $header = $(this),
+                    // ヘッダーのデフォルト位置を取得
+                    headerOffsetTop = window.innerHeight;
+
+                // ウィンドウのスクロールイベントを監視
+                $window.on('scroll', function () {
+                    // ウィンドウのスクロール量をチェックし、クラスを付加と削除を行う
+                    if ($window.scrollTop() > headerOffsetTop) {
+                        $header.addClass('nav-fixed');
+                    } else {
+                        $header.removeClass('nav-fixed');
+                    }
+                });
+                // ウィンドウのスクロールイベントを発生させる
+                // (ヘッダーの初期位置を調整するため)
+                $window.trigger('scroll');
+            });
+        });
+
+        //フェードアニメーション
+        $(function(){
+            $(window).scroll(function (){
+                $('.fadein').each(function(){
+                    var elemPos = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    if (scroll > elemPos - windowHeight + 200){
+                        $(this).addClass('scrollin');
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+
+<!-------------------- ローディング部分 -------------------->
+<!-- <div id="loader-bg">
+    <div id="loader">
+        <img src="Images/loading.gif" width="200" height="320" alt="Now Loading..." />
+    </div>
+</div> -->
+
+<!-------------------- header -------------------->
+<header class="nav">
+    <div class="nav_logo">
+        <p>FOCUS PRODUCTION</p>
+    </div>
+
+    <div class="menu-icon"  id="nav-toggle">
+        <div>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="nav_list" id="gloval-nav">
+        <nav>
+            <ul>
+                <li><a href=Home.html>Home</a></li>
+                <li><a href=Portfolio.html>Portfolio</a></li>
+                <li><a href=Work.html>Work</a></li>
+                <li><a href=Contact.html>Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!---------------------------------------------->
+
+<!-------------------- main -------------------->
+<main>
+
+    <!--------------------------------- movie -------------------------------->
+    <div id="video">
+        <video autoplay muted loop　playsinline>
+            <source src="video/WEBTOPイメージ.mp4">
+        </video>
+    </div>
+    <!------------------------------------------------------------------------->
+
+    <div class="contents">
+        <!---------------------------------- About -------------------------------->
+        <div class="about_1">
+            <div class="about_title">
+                <b><span>F</span>ocus Production . </b>
+                <hr>
+            </div>
+            <div class="about_detail">
+                Imagine Productionは大阪を拠点として関西で映像の撮影・編集を行なっている映像制作チームです。<br>
+                中小企業や個人事業のスタートアップ・独立開業などにあたって必要となるプロモーション映像や、アー<br>ティストのミュージックビデオの制作を行なっています。
+                また上記の映像と組み合わせたウェブ制作や<br>PRイベント企画も得意としており、映像制作→ウェブ制作→PRまで一貫したフォローも高評を得ています。
+            </div>
+        </div>
+
+        <div class="about_2">
+            <div class="about_subtitle">
+                <b>What is <br>Focus Production.....？</b>
+                <p><b>ああああああああああああああああああああ<br>ああああああああスタートアップスタジオです。</b><p>
+            </div>
+            <div class="about_image">
+                <img id="image" src="Images/IMG_2927.jpg" width="670px" height="400px">
+            </div>
+        </div>
+        <!------------------------------------------------------------------------->
+
+        <!---------------------------------- Work --------------------------------->   
+        <div class="works">
+            <div class="works_title">
+                <p><b><span>W</span>orks . </b></p>
+                <hr>
+            </div>
+
+            <div class="works_list">
+                <div class="works_1">
+                    <div class="item">
+                        <img src="Wedding/Wedding_190914_0014.jpg" width="300px" height="200px">
+                        <p id="tag">映像・写真</p>
+                        <p><b>結婚式の前撮り<br>プロモーションビデオ</b></p>
+                        <p id="detail">京都の嵐山での撮影です。前撮り日程に合わせてプロモーションビデオの作成も行いました。とても幸せな撮影になりました。</p>
+                    </div>
+                    <div class="item">
+                        <img src="Wedding/Wedding_190914_0014.jpg" width="300px" height="200px">
+                        <p id="tag">映像・写真</p>
+                        <p><b>結婚式の前撮り<br>プロモーションビデオ</b></p>
+                        <p id="detail">京都の嵐山での撮影です。前撮り日程に合わせてプロモーションビデオの作成も行いました。とても幸せな撮影になりました。</p>
+                    </div>
+                    <div class="item">
+                        <img src="Wedding/Wedding_190914_0014.jpg" width="300px" height="200px">
+                        <p id="tag">映像・写真</p>
+                        <p><b>結婚式の前撮り<br>プロモーションビデオ</b></p>
+                        <p id="detail">京都の嵐山での撮影です。前撮り日程に合わせてプロモーションビデオの作成も行いました。とても幸せな撮影になりました。</p>
+                    </div>
+                </div>
+                <div class="works_2">
+                    <div class="item">
+                        <img src="Wedding/Wedding_190914_0014.jpg" width="300px" height="200px">
+                        <p id="tag">映像・写真</p>
+                        <p><b>結婚式の前撮り<br>プロモーションビデオ</b></p>
+                        <p id="detail">京都の嵐山での撮影です。前撮り日程に合わせてプロモーションビデオの作成も行いました。とても幸せな撮影になりました。</p>
+                    </div>
+                    <div class="item">
+                        <img src="Wedding/Wedding_190914_0014.jpg" width="300px" height="200px">
+                        <p id="tag">映像・写真</p>
+                        <p><b>結婚式の前撮り<br>プロモーションビデオ</b></p>
+                        <p id="detail">京都の嵐山での撮影です。前撮り日程に合わせてプロモーションビデオの作成も行いました。とても幸せな撮影になりました。</p>
+                    </div>
+                    <div class="item">
+                        <img src="Wedding/Wedding_190914_0014.jpg" width="300px" height="200px">
+                        <p id="tag">映像・写真</p>
+                        <p><b>結婚式の前撮り<br>プロモーションビデオ</b></p>
+                        <p id="detail">京都の嵐山での撮影です。前撮り日程に合わせてプロモーションビデオの作成も行いました。とても幸せな撮影になりました。</p>
+                    </div>
+                </div>
+            </div>   
+        </div>
+        <!------------------------------------------------------------------------->
+        
+        <!--------------------------------- contact ------------------------------->   
+        <div class="contact">
+            <div class="contact_title">
+                <p><b><span>C</span>ontact . </b></p>
+                <hr>
+            </div>
+    
+            <div class="contact_form">
+                <form id="" method="post" action="">
+                    <p>お問い合わせの種類 *</p>
+                    <select name="example">
+                        <option value="サンプル1">撮影依頼</option>
+                        <option value="サンプル2">金額について</option>
+                        <option value="サンプル3">その他</option>
+                    </select>
+                                
+                    <p>お名前 *</p>
+                    <input type="text" name="お名前(必須)" class="mfgg" placeholder="山田 太郎" />
+
+                    <p>フリガナ *</p>
+                    <input type="text" name="フリガナ(必須)" class="mfgg" placeholder="ヤマダ タロウ"/>
+
+                    <p>会社名(法人様の場合)</p>
+                    <input type="text" name="会社名" class="mfgg" placeholder="株式会社○○"/>
+
+                    <p>電話番号 *</p>
+                    <input type="text" name="電話番号" class="mfgg" placeholder="052-242-2101" />
+
+                    <p>メールアドレス *</p>
+                    <input type="text" name="email(必須)" class="mfgg" placeholder="メールアドレスに間違いがありますと返信ができません" />
+
+                    <p>メールアドレス（確認用）*</p>
+                    <input type="text" name="confirm_email" class="mfgg" placeholder="上記と同じメールアドレスをご入力ください" />
+
+                    <p>お問い合わせ内容 *</p>
+                    <textarea name="お問い合わせ内容" rows="10" class="mfgg_textarea"></textarea>
+                    
+                    <input type="submit" value="メールを送信する" class="sub_bt"/> 
+                    <input type="reset" name="reset" value="リセット" class="sub_bt"/>
+                </form>
+            </div>
+        </div>
+        <!------------------------------------------------------------------------->
+
+        <!--------------------------------- footer -------------------------------->   
+        <div class="footer">
+            <div class="f_content">
+                <p id="title">FOCUS PRODUCTION</p>
+                <p id="adress">オフィス<br>〒555-5555<br>大阪府大阪市西区本町1-1-1 901<br>090-0000-0000</p>
+            </div>
+            <div class="f_content">
+                <ul id="menu">
+                    <li>ABOUT</li>
+                    <li>WORKS</li>
+                    <li>PORTFOLIO</li>
+                    <li>CONTACT</li>
+                </ul>
+            </div>
+            <div class="f_content">
+                <div class="f_contact">
+                    <p>お気軽にお問い合わせください</p>
+                    <img></img><p>090-0000-0000</p>
+                    <a href="#contact"><img></img>お問い合わせ</a>
+                </div>
+                <ul id="sns">
+                    <li><img src="Images/icon/instagram.jpg" width="30px" height="30px"></li>
+                    <li><img src="Images/icon/instagram.jpg" width="30px" height="30px"></li>
+                    <li><img src="Images/icon/instagram.jpg" width="30px" height="30px"></li>
+                    <li><img src="Images/icon/instagram.jpg" width="30px" height="30px"></li>
+                </ul>
+            </div>
+        </div>
+        <!------------------------------------------------------------------------->
+     
+    </div>
+</main>
+<!----------------------------------------------->
+
+</body>
+</html>
